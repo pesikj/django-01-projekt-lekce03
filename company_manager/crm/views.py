@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.views.generic import CreateView, ListView, TemplateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView, ListView
 import crm.models as models
 from django.urls import reverse_lazy
 
@@ -18,16 +18,17 @@ class CompanyListView(LoginRequiredMixin, ListView):
 
 class OpportunityListView(LoginRequiredMixin, ListView):
     model = models.Opportunity
-    template_name = "company/list_opportunity.html"
+    template_name = "opportunity/list_opportunity.html"
 
 class OpportunityCreateView(PermissionRequiredMixin, CreateView):
     permission_required = 'crm.add_opportunity'
     model = models.Opportunity
-    template_name = "company/create_company.html"
+    template_name = "opportunity/create_company.html"
     fields = ["company", "sales_manager", "primary_contact", "description", "status"]
     success_url = reverse_lazy("index")
 
 class OpportunityUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'crm.change_opportunity'
     model = models.Opportunity
     template_name = "opportunity/update_opportunity.html"
     fields = ["company", "primary_contact", "description", "status"]
