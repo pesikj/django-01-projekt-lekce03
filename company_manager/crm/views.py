@@ -27,4 +27,9 @@ class OpportunityCreateView(PermissionRequiredMixin, CreateView):
     fields = ["company", "sales_manager", "primary_contact", "description", "status"]
     success_url = reverse_lazy("index")
 
+class OpportunityUpdateView(PermissionRequiredMixin, UpdateView):
+    model = models.Opportunity
+    template_name = "opportunity/update_opportunity.html"
+    fields = ["company", "primary_contact", "description", "status"]
+    success_url = reverse_lazy("index")
 
