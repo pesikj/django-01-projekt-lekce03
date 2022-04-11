@@ -8,4 +8,5 @@ urlpatterns = [
     path('company/list', views.CompanyListView.as_view(), name='company_list'),
     path('opportunity/list', views.OpportunityListView.as_view(), name='opportunity_list'),
     path('opportunity/create', views.OpportunityCreateView.as_view(), name='opportunity_create'),
+    path('opportunity/update/<int:pk>', views.OpportunityUpdateView.as_view(), name='opportunity_update'),
 ]
